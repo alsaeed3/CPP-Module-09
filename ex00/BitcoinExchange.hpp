@@ -6,7 +6,7 @@
 /*   By: alsaeed <alsaeed@student.42abudhabi.ae>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/25 18:30:49 by alsaeed           #+#    #+#             */
-/*   Updated: 2024/08/25 19:43:09 by alsaeed          ###   ########.fr       */
+/*   Updated: 2024/08/25 21:26:57 by alsaeed          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@
 
 #include <iostream>
 #include <string>
-#include <vector>
 #include <algorithm>
 #include <map>
 #include <iomanip>
@@ -27,9 +26,18 @@
 class BitcoinExchange {
 
 	private:
-		
+		std::map<std::string, int> rate;
+		std::map<std::string, int> input;
+
+		BitcoinExchange();
 
 	public:	
+		BitcoinExchange( std::string const &inputFile );
+		BitcoinExchange( BitcoinExchange const &src );
+		BitcoinExchange &operator=( BitcoinExchange const &src );
+		~BitcoinExchange();
+
+		std::map<std::string, int> readFile( std::string const &file ) const;
 		
 };
 
