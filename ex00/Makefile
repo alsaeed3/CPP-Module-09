@@ -6,7 +6,7 @@
 #    By: alsaeed <alsaeed@student.42abudhabi.ae>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/08/25 18:30:57 by alsaeed           #+#    #+#              #
-#    Updated: 2024/08/25 19:54:49 by alsaeed          ###   ########.fr        #
+#    Updated: 2024/08/26 23:42:03 by alsaeed          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,7 +20,7 @@ NAME = btc
 
 CXX = c++
 
-CXXFLAGS = -Wall -Werror -Wextra -std=c++98
+CXXFLAGS = -Wall -Werror -Wextra -std=c++98 -ggdb3
 
 INCLUDES = -I./
 

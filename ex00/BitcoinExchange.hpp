@@ -6,7 +6,7 @@
 /*   By: alsaeed <alsaeed@student.42abudhabi.ae>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/25 18:30:49 by alsaeed           #+#    #+#             */
-/*   Updated: 2024/08/25 21:26:57 by alsaeed          ###   ########.fr       */
+/*   Updated: 2024/08/26 23:31:51 by alsaeed          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,25 +20,30 @@
 #include <algorithm>
 #include <map>
 #include <iomanip>
+#include <fstream>
 #include <sstream>
 #include <cmath>
 
 class BitcoinExchange {
 
 	private:
-		std::map<std::string, int> rate;
-		std::map<std::string, int> input;
+		std::map<std::string, double> database;
 
-		BitcoinExchange();
 
 	public:	
-		BitcoinExchange( std::string const &inputFile );
+		BitcoinExchange( void );
 		BitcoinExchange( BitcoinExchange const &src );
 		BitcoinExchange &operator=( BitcoinExchange const &src );
 		~BitcoinExchange();
 
-		std::map<std::string, int> readFile( std::string const &file ) const;
-		
+		void	loadDatabase( std::string const &fileName );
+		void	parseInputFile( std::string const &fileName );
+		void	processLine( std::string const &line );
+		double	getExchangeRate( std::string const &date ) const;
+		bool	isValidDate( std::string const &date ) const;
+		bool	isValidValue( double value ) const;
+		bool	isLeapYear( int year ) const;
+
 };
 
 #endif
