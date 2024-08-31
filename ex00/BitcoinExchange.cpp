@@ -6,7 +6,7 @@
 /*   By: alsaeed <alsaeed@student.42abudhabi.ae>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/25 18:30:54 by alsaeed           #+#    #+#             */
-/*   Updated: 2024/08/26 23:46:45 by alsaeed          ###   ########.fr       */
+/*   Updated: 2024/09/01 02:03:29 by alsaeed          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ void	BitcoinExchange::loadDatabase( std::string const &fileName ) {
 	std::ifstream	file(fileName.c_str());
 	if ( !file.is_open() ) {
 		
-		std::cerr << "Error: could not open database file." << std::endl;
+		std::cerr << "Error: could not open input file." << std::endl;
 		return;
 	}
 
@@ -113,7 +113,7 @@ void	BitcoinExchange::processLine( std::string const &line ) {
 				double rate = getExchangeRate( date );
 				double result = value * rate;
 				std::cout << date << " => " << value << " = " << result << std::endl;
-			} catch ( const std::exception& e ) {
+			} catch ( std::exception const &e ) {
 				
 				std::cout << "Error: " << e.what() << std::endl;
 			}
@@ -124,17 +124,53 @@ void	BitcoinExchange::processLine( std::string const &line ) {
 	}
 }
 
+int	daysBetween(std::string const &date1, std::string const &date2) {
+
+	std::tm tm1 = {}, tm2 = {};
+	std::istringstream ss1(date1);
+	std::istringstream ss2(date2);
+	
+	ss1 >> tm1.tm_year;
+	ss1.ignore();
+	ss1 >> tm1.tm_mon;
+	ss1.ignore();
+	ss1 >> tm1.tm_mday;
+	
+	ss2 >> tm2.tm_year;
+	ss2.ignore();
+	ss2 >> tm2.tm_mon;
+	ss2.ignore();
+	ss2 >> tm2.tm_mday;
+
+	tm1.tm_year -= 1900;
+	tm1.tm_mon -= 1;
+	tm2.tm_year -= 1900;
+	tm2.tm_mon -= 1;
+	
+	std::time_t time1 = std::mktime(&tm1);
+	std::time_t time2 = std::mktime(&tm2);
+	
+	return std::abs(static_cast<int>(std::difftime(time1, time2) / (60 * 60 * 24)));
+}
+
 double	BitcoinExchange::getExchangeRate( std::string const &date ) const {
 	
 	std::map<std::string, double>::const_iterator it = database.lower_bound(date);
-	if ( it == database.begin() && it->first != date ) {
-		
-		throw std::runtime_error("Error: no exchange rate available for the given date.");
-	}
 
-	if ( it == database.end() || it->first != date ) {
+	if ( it == database.end() ) {
 		
 		--it;
+	} else if ( it == database.begin() && it->first > date ) {
+		
+		throw std::runtime_error("Error: no exchange rate available for the given date.");
+	} else if ( it->first != date ) {
+		
+		std::map<std::string, double>::const_iterator prev = it;
+		--prev;
+		if (daysBetween(date, prev->first) <= daysBetween(date, it->first)) {
+
+			it = prev;
+		}
 	}
 	
 	return it->second;

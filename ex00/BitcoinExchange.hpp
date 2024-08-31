@@ -6,7 +6,7 @@
 /*   By: alsaeed <alsaeed@student.42abudhabi.ae>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/25 18:30:49 by alsaeed           #+#    #+#             */
-/*   Updated: 2024/08/26 23:31:51 by alsaeed          ###   ########.fr       */
+/*   Updated: 2024/09/01 01:51:51 by alsaeed          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,9 @@
 #include <iomanip>
 #include <fstream>
 #include <sstream>
+#include <ctime>
 #include <cmath>
+#include <cstdlib>
 
 class BitcoinExchange {
 
