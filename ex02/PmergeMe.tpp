@@ -6,7 +6,7 @@
 /*   By: alsaeed <alsaeed@student.42abudhabi.ae>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/28 21:35:29 by alsaeed           #+#    #+#             */
-/*   Updated: 2024/08/31 00:43:12 by alsaeed          ###   ########.fr       */
+/*   Updated: 2024/08/31 21:04:56 by alsaeed          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ N			PmergeMe<N, P>::parseNumbers( int ac, char *av[] ) {
 	N	numbers;
 	int	g_num( -1 );
 
-	for ( int i = 1; i < size; i++ ) {
+	for ( int i = 1; i < ac; i++ ) {
 
 		std::istringstream	iss( (std::string( av[i] )) );
 
@@ -35,7 +35,7 @@ N			PmergeMe<N, P>::parseNumbers( int ac, char *av[] ) {
 }
 
 template<typename N, typename P>
-N			PmergeMe<N, P>::FJMIS( N &numbers ) {
+N			PmergeMe<N, P>::FJMI( N &numbers ) {
 
 	straggler_t	straggler = findStraggler( numbers );
 
@@ -47,9 +47,9 @@ N			PmergeMe<N, P>::FJMIS( N &numbers ) {
 	while ( !numbers.empty() ) {
 
 		int a = numbers.front();
-		numbers.pop_front();
+		numbers.erase( numbers.begin() );
 		int b = numbers.front();
-		numbers.pop_front();
+		numbers.erase( numbers.begin() );
 
 		if ( a > b ) {
 
@@ -62,7 +62,7 @@ N			PmergeMe<N, P>::FJMIS( N &numbers ) {
 	if ( !pairs.empty() ) {
 
 		sorted_pairs = mergeSortSeconds( pairs );
-		sorted_numbers = extractLargest( sorted_pairs );
+		extractLargest( sorted_pairs, sorted_numbers );
 		insertSmallest( sorted_pairs, sorted_numbers );
 	}
 
@@ -112,19 +112,19 @@ P			PmergeMe<N, P>::mergeSortSeconds( P &pairs ) {
 	P	left( pairs.begin(), mid_it );
 	P	right( mid_it, pairs.end() );
 
-	std::merge( left.begin(), left.end(), right.begin(), righ.end(),
+	std::merge( left.begin(), left.end(), right.begin(), right.end(),
 				std::back_inserter( sorted_pairs ), compSec );
 
-	return;
+	return sorted_pairs;
 }
 
 template<typename N, typename P>
 void			PmergeMe<N, P>::extractLargest( P &sorted_pairs, N &sorted_numbers ) {
 
 
-	for ( typename P::iterator it = sorted_pairs.begin(); it < sorted_pairs.end(); it++ ) {
+	for ( typename P::iterator it = sorted_pairs.begin(); it != sorted_pairs.end(); it++ ) {
 		
-		sorted_numbers.push_back( it.second );
+		sorted_numbers.push_back( it->second );
 	}
 
 	return;
@@ -133,10 +133,10 @@ void			PmergeMe<N, P>::extractLargest( P &sorted_pairs, N &sorted_numbers ) {
 template<typename N, typename P>
 void		PmergeMe<N, P>::insertSmallest( P &sorted_pairs, N &sorted_numbers ) {
 
-	for ( typename P::iterator it = sorted_pairs.begin(); it < sorted_pairs.end(); it++ ) {
+	for ( typename P::iterator it = sorted_pairs.begin(); it != sorted_pairs.end(); it++ ) {
 
-		typename	N::iterator insertPos = std::lower_bound( sorted_numbers.begin(), sorted_numbers.end(), it.first );
-		sorted_numbers.insert( insertPos, it.first );
+		typename	N::iterator insertPos = std::lower_bound( sorted_numbers.begin(), sorted_numbers.end(), it->first );
+		sorted_numbers.insert( insertPos, it->first );
 	}
 
 	return;

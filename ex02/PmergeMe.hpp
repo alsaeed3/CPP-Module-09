@@ -6,7 +6,7 @@
 /*   By: alsaeed <alsaeed@student.42abudhabi.ae>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/28 21:35:27 by alsaeed           #+#    #+#             */
-/*   Updated: 2024/08/31 00:36:41 by alsaeed          ###   ########.fr       */
+/*   Updated: 2024/08/31 20:39:09 by alsaeed          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,11 @@
 # include <string>
 # include <vector>
 # include <list>
+# include <deque>
 # include <iterator>
 # include <sstream>
 # include <utility>
+# include <iomanip>
 # include <algorithm>
 
 typedef std::pair<int, bool> straggler_t;
@@ -43,7 +45,7 @@ class PmergeMe {
 		
 	public:
 		static N			parseNumbers( int ac, char *av[] );
-		static N			FJMIS( N &numbers );
+		static N			FJMI( N &numbers );
 		
 };
 
