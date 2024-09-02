@@ -6,7 +6,7 @@
 /*   By: alsaeed <alsaeed@student.42abudhabi.ae>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/27 10:23:23 by alsaeed           #+#    #+#             */
-/*   Updated: 2024/08/27 10:57:29 by alsaeed          ###   ########.fr       */
+/*   Updated: 2024/09/01 21:25:52 by alsaeed          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,8 @@
 # include <stack>
 # include <fstream>
 # include <sstream>
+# include <algorithm>
+# include <cctype>
 
 class RPN {
 

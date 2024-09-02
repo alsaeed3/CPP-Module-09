@@ -6,7 +6,7 @@
 /*   By: alsaeed <alsaeed@student.42abudhabi.ae>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/28 21:35:27 by alsaeed           #+#    #+#             */
-/*   Updated: 2024/08/31 20:39:09 by alsaeed          ###   ########.fr       */
+/*   Updated: 2024/09/02 15:22:35 by alsaeed          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,6 @@ class PmergeMe {
 	public:
 		static N			parseNumbers( int ac, char *av[] );
 		static N			FJMI( N &numbers );
-		
 };
 
 # include "PmergeMe.tpp"

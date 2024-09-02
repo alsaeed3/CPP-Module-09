@@ -6,7 +6,7 @@
 /*   By: alsaeed <alsaeed@student.42abudhabi.ae>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/27 10:23:25 by alsaeed           #+#    #+#             */
-/*   Updated: 2024/08/27 11:04:34 by alsaeed          ###   ########.fr       */
+/*   Updated: 2024/09/01 21:30:52 by alsaeed          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,53 @@ RPN &RPN::operator=( RPN const &rhs ) {
 RPN::~RPN( void ) {
 
 	return;
+}
+
+bool isAllDigits(const std::string &str) {
+
+    for ( std::string::const_iterator it = str.begin(); it != str.end(); ++it ) {
+
+        if ( !std::isdigit( *it ) ) {
+
+            return false;
+        }
+    }
+    return true;
+}
+
+int	RPN::calculate( std::string const &expression ) {
+
+	std::istringstream	iss( expression );
+	std::string			token;
+
+	while ( iss >> token ) {
+
+		if ( token.length() == 1 && isOperator(token[0]) ) {
+			
+			performOperation( token[0] );
+		} else {
+
+			if ( !isAllDigits( token ) ) {
+				
+				throw std::runtime_error("Invalid entry: " + token);
+			}
+
+			int num;
+			std::istringstream(token) >> num;	
+			if ( num < 0 || num > 9 ) {
+				
+				throw std::runtime_error( "Invalid number: " + token );
+			}
+			operands.push( num );
+		}
+	}
+
+	if ( operands.size() != 1 ) {
+		
+		throw std::runtime_error( "Invalid expression");
+	}
+
+	return operands.top();
 }
 
 bool	RPN::isOperator( char c ) {
@@ -78,34 +125,3 @@ void	RPN::performOperation( char op ) {
 
 	return;
 }
-
-int	RPN::calculate( std::string const &expression ) {
-
-	std::istringstream	iss( expression );
-	std::string			token;
-
-	while ( iss >> token ) {
-
-		if ( token.length() == 1 && isOperator(token[0]) ) {
-			
-			performOperation( token[0] );
-		} else {
-
-			int num;
-			std::istringstream(token) >> num;	
-			if ( num < 0 || num > 9 ) {
-				
-				throw std::runtime_error( "Invalid number: " + token );
-			}
-			operands.push( num );
-		}
-	}
-
-	if ( operands.size() != 1 ) {
-		
-		throw std::runtime_error( "Invalid expression");
-	}
-
-	return operands.top();
-}
-

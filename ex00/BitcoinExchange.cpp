@@ -6,7 +6,7 @@
 /*   By: alsaeed <alsaeed@student.42abudhabi.ae>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/25 18:30:54 by alsaeed           #+#    #+#             */
-/*   Updated: 2024/09/01 02:03:29 by alsaeed          ###   ########.fr       */
+/*   Updated: 2024/09/02 13:19:53 by alsaeed          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -124,7 +124,7 @@ void	BitcoinExchange::processLine( std::string const &line ) {
 	}
 }
 
-int	daysBetween(std::string const &date1, std::string const &date2) {
+int	daysBetween( std::string const &date1, std::string const &date2 ) {
 
 	std::tm tm1 = {}, tm2 = {};
 	std::istringstream ss1(date1);

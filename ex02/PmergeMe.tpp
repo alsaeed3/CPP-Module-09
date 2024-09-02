@@ -6,7 +6,7 @@
 /*   By: alsaeed <alsaeed@student.42abudhabi.ae>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/28 21:35:29 by alsaeed           #+#    #+#             */
-/*   Updated: 2024/08/31 21:04:56 by alsaeed          ###   ########.fr       */
+/*   Updated: 2024/09/02 15:26:04 by alsaeed          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,10 +41,9 @@ N			PmergeMe<N, P>::FJMI( N &numbers ) {
 
 	P	pairs( 0 );
 	P	sorted_pairs( 0 );
-	
 	N	sorted_numbers( 0 );
 
-	while ( !numbers.empty() ) {
+	while ( !numbers.empty() && numbers.size() > 1 ) {
 
 		int a = numbers.front();
 		numbers.erase( numbers.begin() );
