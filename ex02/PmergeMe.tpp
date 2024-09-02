@@ -6,7 +6,7 @@
 /*   By: alsaeed <alsaeed@student.42abudhabi.ae>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/28 21:35:29 by alsaeed           #+#    #+#             */
-/*   Updated: 2024/09/02 15:26:04 by alsaeed          ###   ########.fr       */
+/*   Updated: 2024/09/02 18:29:57 by alsaeed          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,6 +110,9 @@ P			PmergeMe<N, P>::mergeSortSeconds( P &pairs ) {
 
 	P	left( pairs.begin(), mid_it );
 	P	right( mid_it, pairs.end() );
+
+	left = mergeSortSeconds( left );
+	right = mergeSortSeconds( right );
 
 	std::merge( left.begin(), left.end(), right.begin(), right.end(),
 				std::back_inserter( sorted_pairs ), compSec );
