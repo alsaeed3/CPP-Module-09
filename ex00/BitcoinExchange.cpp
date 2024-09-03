@@ -6,7 +6,7 @@
 /*   By: alsaeed <alsaeed@student.42abudhabi.ae>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/25 18:30:54 by alsaeed           #+#    #+#             */
-/*   Updated: 2024/09/02 13:19:53 by alsaeed          ###   ########.fr       */
+/*   Updated: 2024/09/03 12:16:28 by alsaeed          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ void	BitcoinExchange::loadDatabase( std::string const &fileName ) {
 	return;
 }
 
-void	BitcoinExchange::parseInputFile( std::string const &fileName ) {
+void	BitcoinExchange::processInputFile( std::string const &fileName ) {
 	
 	std::ifstream	inputFile( fileName.c_str() );
 	if ( !inputFile.is_open() ) {
@@ -89,7 +89,6 @@ void	BitcoinExchange::processLine( std::string const &line ) {
 	std::istringstream	iss( line );
 	std::string			date;
 	double				value;
-	// char				delimiter;
 
 	if ( std::getline( iss, date, '|' ) && ( iss >> value ) ) {
 		

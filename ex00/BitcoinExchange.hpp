@@ -6,7 +6,7 @@
 /*   By: alsaeed <alsaeed@student.42abudhabi.ae>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/25 18:30:49 by alsaeed           #+#    #+#             */
-/*   Updated: 2024/09/01 01:51:51 by alsaeed          ###   ########.fr       */
+/*   Updated: 2024/09/03 12:14:12 by alsaeed          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ class BitcoinExchange {
 		~BitcoinExchange();
 
 		void	loadDatabase( std::string const &fileName );
-		void	parseInputFile( std::string const &fileName );
+		void	processInputFile( std::string const &fileName );
 		void	processLine( std::string const &line );
 		double	getExchangeRate( std::string const &date ) const;
 		bool	isValidDate( std::string const &date ) const;
